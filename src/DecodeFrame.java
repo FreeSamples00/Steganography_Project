@@ -12,6 +12,7 @@ public class DecodeFrame extends JFrame {
     private boolean outputLoaded = false;
 
     public DecodeFrame() {
+        //sets up JFrame elements
         setSize(750, 200);
         setTitle("Decoder");
         setLayout(new GridLayout());
@@ -19,6 +20,7 @@ public class DecodeFrame extends JFrame {
         JButton loadKeyImageButton = new JButton("Load Key Image");
         JButton loadOutputFolderButton = new JButton("Choose Output Location");
         JButton decodeButton = new JButton("Decode");
+        //mapping button actions
         loadImageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

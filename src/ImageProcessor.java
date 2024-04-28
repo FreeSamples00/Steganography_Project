@@ -13,6 +13,7 @@ public class ImageProcessor {
     private File outputFile = null;
     private static final char[] charLibrary = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890 \n!@#$%^&*()-=_+[]{}:;,./<>?`~|\\'\"".toCharArray();
 
+    //setter methods
     public void setInputFile(File input) throws IOException {
         this.inImage = new Image(input);
     }
@@ -33,6 +34,7 @@ public class ImageProcessor {
         this.outputFile = new File(outputFolderPath+"\\"+outputFileName);
     }
 
+    //turns text and an image into a new encoded image
     public void encode() throws IOException, SizeException, CharacterException {
         if (rawText.length() > inImage.getCharLimit()) {
             throw new SizeException("");
@@ -58,6 +60,7 @@ public class ImageProcessor {
         ImageIO.write(outImage, "png", this.outputFile);
     }
 
+    //turns the original image and an encoded image into text
     public void decode() throws IOException {
         int[] RGB, compRGB, diffRGB = new int[3];
         int totalDiff;
@@ -87,6 +90,7 @@ public class ImageProcessor {
         outFile.close();
     }
 
+    //convert a character to RGB value offsets
     private static String RGBtoChar(int[] diffRGB) {
         int charIndex = (diffRGB[0]*10) + (diffRGB[1]*5) + diffRGB[2];
         if (charIndex == 0) {
@@ -96,6 +100,7 @@ public class ImageProcessor {
         return Character.toString(charLibrary[charIndex]);
     }
 
+    //convert RGB value offsets back into characters
     private static int charToRGB(char input, int[] RGB) throws CharacterException {
         int index=-1;
         for (int i=0; i < charLibrary.length; i++) {
@@ -131,6 +136,7 @@ public class ImageProcessor {
         return 65536*RGB[0] + 256*RGB[1] + RGB[2];
     }
 
+    //find the difference between two numbers
     private static int diff(int int1, int int2) {
         int output = int1 - int2;
         if (output < 0) {
@@ -143,6 +149,7 @@ public class ImageProcessor {
         return outputFile;
     }
 
+    //custom exceptions for mismatched sizes and missing characters
     public static class SizeException extends Exception {
         public SizeException(String message) {
             super(message);

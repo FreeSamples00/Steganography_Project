@@ -14,6 +14,7 @@ public class Image {
     int xLength;
     int yLength;
 
+    //initializing an image in the form of a 2d array of RGB Pixels
     public Image(File inputFile) throws IOException {
         BufferedImage rawImage = ImageIO.read(inputFile);
         xLength = rawImage.getWidth();
@@ -29,8 +30,13 @@ public class Image {
         }
     }
 
-    public int getCharLimit() {
-        return charLimit;
+    //getters
+    public int getCharLimit() {return charLimit;}
+    public int[] getRGB(int x, int y) {
+        return pixelMatrix[x][y].getRGB();
+    }
+    public int getIntRGB(int x, int y) {
+        return pixelMatrix[x][y].getInt();
     }
 
     public int[][] getRandomPixels(int numCords) {
@@ -53,14 +59,6 @@ public class Image {
         });
         return output;
     }
-
-    public int[] getRGB(int x, int y) {
-        return pixelMatrix[x][y].getRGB();
-    }
-    public int getIntRGB(int x, int y) {
-        return pixelMatrix[x][y].getInt();
-    }
-
     public static boolean cordsInArray(int[] inputCords, int[][] array) {
         boolean cordsFound = false;
         for (int[] cords : array) {
@@ -72,6 +70,7 @@ public class Image {
         return cordsFound;
     }
 
+    //Pixel used in image array, holds RGB values
     public static class Pixel {
         private final int red;
         private final int green;
@@ -83,6 +82,7 @@ public class Image {
             this.blue = b;
         }
 
+        //turn RGB values into a bufferedImage compatible int value
         public int getInt() {
             return 65536*this.red + 256*this.green + this.blue;
         }

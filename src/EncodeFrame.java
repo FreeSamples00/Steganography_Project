@@ -11,6 +11,7 @@ public class EncodeFrame extends JFrame {
     private boolean textLoaded = false;
     private boolean outputLoaded = false;
     public EncodeFrame() {
+        //setting up JFrame elements
         setSize(750,200);
         setTitle("Encoder");
         setLayout(new GridLayout());
@@ -18,6 +19,7 @@ public class EncodeFrame extends JFrame {
         JButton loadTextButton = new JButton("Load Text File");
         JButton loadOutputFolderButton = new JButton("Choose Output Location");
         JButton encodeButton = new JButton("Encode");
+        //mapping buttons actions
         loadImageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

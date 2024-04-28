@@ -1,6 +1,5 @@
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,7 +14,7 @@ public class FileIO {
         System.out.format("Input err: %s\n", message);
     }
 
-
+    //uses JFileChooser to get an image file from the user
     public static File getImage(String title, JFrame frame) {
         JFileChooser chooser = new JFileChooser(userDir);
         chooser.setFileFilter(ImageFilter);
@@ -28,7 +27,7 @@ public class FileIO {
             return null;
         }
     }
-
+    //uses JFileCHooser to get a folder file from the user
     public static File getFolder(String title, JFrame frame) {
         JFileChooser chooser = new JFileChooser(userDir);
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -40,7 +39,7 @@ public class FileIO {
             return null;
         }
     }
-
+    //uses JFileChooser to get a plaintext file then reads and return its contents
     public static String getTXTFromFile(String title, JFrame frame) {
         JFileChooser chooser = new JFileChooser(userDir);
         chooser.setFileFilter(TextFilter);
@@ -64,6 +63,7 @@ public class FileIO {
         }
     }
 
+    //open the specified file in the OS file explorer
     public static void openFileLocation(File file) {
         try {
             Desktop.getDesktop().open(file.getParentFile());
@@ -72,7 +72,7 @@ public class FileIO {
         }
     }
 
-
+    //custom file filter that checks extensions of files as well as all files in nested folders
     public static class CustomFileFilter extends FileFilter {
         private String description;
         private String[] extensions;

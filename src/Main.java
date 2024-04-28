@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 public class Main extends JFrame {
 
     public Main() {
+        //setting up the JFrame elements
         setTitle("Steganography");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(450, 100);
@@ -14,6 +15,7 @@ public class Main extends JFrame {
         JButton decodeButton = new JButton("Decode");
         JButton quitButton = new JButton("Quit");
         quitButton.setBackground(Color.pink);
+        //mapping button actions
         encodeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
