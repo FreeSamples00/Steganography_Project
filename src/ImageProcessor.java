@@ -157,7 +157,7 @@ public class ImageProcessor {
     }
     
     public static class CharacterException extends Exception {
-        private char input;
+        private final char input;
         public CharacterException(char input) {
             super("");
             this.input = input;
