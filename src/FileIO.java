@@ -10,9 +10,6 @@ public class FileIO {
     private static final File userDir = new File(System.getProperty("user.home"));
     private static final CustomFileFilter ImageFilter = new CustomFileFilter("Images", ".jpg", ".png", ".bmp");
     private static final CustomFileFilter TextFilter = new CustomFileFilter("Text Files", ".txt", ".csv", ".tsv", ".log");
-    private static void printErr(String message) {
-        System.out.format("Input err: %s\n", message);
-    }
 
     //uses JFileChooser to get an image file from the user
     public static File getImage(String title, JFrame frame) {
@@ -74,8 +71,8 @@ public class FileIO {
 
     //custom file filter that checks extensions of files as well as all files in nested folders
     public static class CustomFileFilter extends FileFilter {
-        private String description;
-        private String[] extensions;
+        private final  String description;
+        private final String[] extensions;
 
         public CustomFileFilter(String description, String... extensions) {
             this.description = description;
@@ -91,7 +88,7 @@ public class FileIO {
                         if (nestedFile.isDirectory()) {
                             if (accept(nestedFile)) {
                                 return true;
-                            };
+                            }
                         }
                         for (String extension : extensions) {
                             if (nestedFile.isFile() && nestedFile.getName().toLowerCase().endsWith(extension)) {
@@ -99,15 +96,14 @@ public class FileIO {
                         }}
                     }
                 }
-                return false;
             } else {
                 for (String extension : extensions) {
                     if (file.getName().toLowerCase().endsWith(extension)) {
                         return true;
                     }
                 }
-                return false;
             }
+            return false;
         }
 
         @Override
