@@ -24,7 +24,7 @@ public class FileIO {
             return null;
         }
     }
-    //uses JFileCHooser to get a folder file from the user
+    //uses JFileChooser to get a folder file from the user
     public static File getFolder(String title, JFrame frame) {
         JFileChooser chooser = new JFileChooser(userDir);
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
